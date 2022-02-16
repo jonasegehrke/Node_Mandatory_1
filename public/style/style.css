@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.nav-bar{
+    height: 100vh;
+}
+
+.headline, .credits{
+    text-align: center!important;
+}
+
+.heading{
+    vertical-align: middle;
+}
+
+.footer{
+    text-align: center;
+}
+
+.wrapper{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.header{
+    position: fixed;
+}
+
+.content{
+    padding-top: 20px;
+    margin-left: 350px;
+    margin-right: 100px;
+}
+
+.content-sm-heading{
+    font-weight: 500;
+}
+
+.nav-link.active{
+    background-color: #7BAE45!important;
+}
+
+.content-main-heading{
+    padding: 40px 0px;
+}
