@@ -12,6 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="scripts/prism.css"/>
 </head>
 
 <body>
@@ -137,18 +138,19 @@
                     </p>
 
                     <p>First you have to add a few changes to your express project:</p>
-                    <p>Add a script to start your project in the package.json file <br>
-                    <code>
-                        "scripts": {
-                            "start": "node &lt;FILE_TO_RUN&gt;"
-                        }
-                    </code></p>
+                    <p>Add a script to start your project in the package.json file</p>
+<pre class="line-numbers"><code class="language-json" data-prismjs-copy="Copy to clipboard">"scripts": {
+    "start": "node &lt;FILE_TO_RUN&gt;"
+}
+</code></pre>
 
-                    <p>Inside your express project change <code>app.listen()</code> to the following: <br>
-                    <code>app.listen(process.env.PORT || 8080, function(){
-                        console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-                      });</code></p>
+                    <p>Inside your express project change <code>app.listen()</code> to the following:</p>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.listen(process.env.PORT || 8080, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
+</code></pre>
 
+                    <p>This will make sure that when deployed to heroku the port will be set by heroku themselves</p>
                     <p>Now make sure that the updated project is pushed to your git repos.</p>
 
                     <p>The next step is to create the heroku app and push the git repos to it. <br>
@@ -158,15 +160,14 @@
 
                     <p>In case the project is a subfolder to a git repository use the following command to push instead <br>
                     <code>git subtree push --prefix &lt;PATH_TO_SUBFOLDER_PROJECT&gt; heroku master </code></p>
-
-
-        
+                    
                     
             </section>
             <hr>
         </section>
     </div>
     <script src="js/main.js"></script>
+    <script src="scripts/prism.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
