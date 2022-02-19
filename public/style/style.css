@@ -47,3 +47,8 @@
 .content-main-heading{
     padding: 40px 0px;
 }
+
+.code-embed{
+    background-color: rgba(128, 128, 128, 0.2);
+    border-radius: 10px;
+}
