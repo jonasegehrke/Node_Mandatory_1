@@ -4,5 +4,24 @@
   },
   "dependencies": {
     "express": "^4.17.3"
-  }
+  },
+  "name": "node_mandatory_1",
+  "description": "To use this project you will need to install express\r > npm install express",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonasegehrke/Node_Mandatory_1.git"
+  },
+  "keywords": [
+    "SSR",
+    "Express"
+  ],
+  "author": "Jonas Emil Gehrke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonasegehrke/Node_Mandatory_1/issues"
+  },
+  "homepage": "https://github.com/jonasegehrke/Node_Mandatory_1#readme"
 }

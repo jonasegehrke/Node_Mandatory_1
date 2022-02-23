@@ -1,0 +1,51 @@
+<section class="content">
+    <div class="content-headline">
+        <span class="fs-5 content-sm-heading">Tools</span>
+        <a class="text-dark text-decoration-none fs-5 float-end"
+            href="https://github.com/jonasegehrke/Node_Mandatory_1"><i class="uil uil-github"></i>Link to
+            Github</a>
+    </div>
+    <hr>
+    <section class="content-1">
+        <h3 class="content-main-heading">Tools for Node.js</h1>
+            <h4>Description</h4>
+            <p>In this elective we've used a few tools that have come in handy for backend web-development</p>
+
+            <h4>Express</h4>
+            <p>Express is a Node.js web application framework that provides a set of features for web
+                applications. <br>
+                It is fast, robust and asynchronous. Because of this, it is the leading backend framework for
+                Node</p>
+
+            <p>To install express you will require a version of Node and npm. You can install this from the <a
+                    href="https://nodejs.org/">node.js</a> website</p>
+
+            <p>In your project repository you will need to create a file called package.json with one simple
+                line of code:</p>
+            <pre class="line-numbers"><code class="language-json" data-prismjs-copy="Copy to clipboard">{}
+</code></pre>
+            <p>With node installed and package.json created you will be able to do a simple terminal command to
+                install express into your project <br>
+                <code>npm install express</code>
+            </p>
+
+            <p>Express will now be installed and you can proceed to start your first express project. <br>
+                Below will be an example of a simple web-application using nothing but express:</p>
+            <pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">const express = require("express"); //import express with require
+const app = express(); //Inititalize express and save it to a const
+
+//Create a endpoint with parameters request & response
+app.get("/", (req, res) =>{
+    res.send("Hello World");    //Send a string to the web application
+})
+
+//Open the server on chosen port
+app.listen(8080, () =>{ 
+    console.log("Server is running on port ", 8080);
+});
+</code></pre>
+
+    </section>
+    <hr>
+</section>
+</div>

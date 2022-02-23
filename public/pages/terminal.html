@@ -1,0 +1,91 @@
+<section class="content">
+    <div class="content-headline">
+        <span class="fs-5 content-sm-heading">Terminal Commands</span>
+        <a class="text-dark text-decoration-none fs-5 float-end"
+            href="https://github.com/jonasegehrke/Node_Mandatory_1"><i class="uil uil-github"></i>Link to
+            Github</a>
+    </div>
+    <hr>
+    <section class="content-1">
+        <h3 class="content-main-heading">Terminal Commands</h1>
+            <h4>Description</h4>
+            <p>This page includes all terminal commands that I've personally found helpful specifically for the
+                Node.js elective. <br>
+                This means that it will not include a lot of basic terminal commands such as
+                <code>cd, ls, mkdir</code> and so on.
+            </p>
+
+            <h4>Node</h4>
+            <p>Node contains a few commands itself which are useful for your workstation aswell as launching a
+                program.</p>
+
+            <p>The command below will tell you which version of node you currently have installed. <br>
+                <code>node -v</code>
+            </p>
+
+            <p>For running a node file once you can use the command below. <br>
+                <code>node &lt;FILE_TO_RUN&gt;</code>
+            </p>
+
+            <h4>npm</h4>
+            <p>npm (Node package Manager) is the world's largest Software Registry. Open-source developers use
+                npm to share software in a elegant and easy way <br>
+                We use npm to install different software such as <code>express</code>.</p>
+
+            <p>To install software such as express we use a simple command within our project repository. <br>
+                <code>npm install express</code>
+            </p>
+
+            <p>In some cases we want to install software globally on our device so that we dont have to install
+                it into every repository. <br>
+                This is done with the <code>-g</code> option.<br>
+                <code>npm install -g nodemon</code>
+            </p>
+
+            <h4>nodemon</h4>
+            <p>In the development phase you might want to auto-rerun your program whenever a change is made in
+                your code. <br>
+                This makes testing much easier to come during the journey</p>
+
+            <p>To do this you have to install nodemon with npm. After this you can run your program on auto
+                restart mode with the following command. <br>
+                <code>nodemon.cmd &lt;FILE_TO_RUN&gt;</code>
+            </p>
+
+            <h4>Heroku</h4>
+            <p>In case you want to publish an express project to the web you can make use of the free hosting
+                service called Heroku <br>
+                I will explain the path to creating an app with heroku and to push your repository to that app
+            </p>
+
+            <p>First you have to add a few changes to your express project:</p>
+            <p>Add a script to start your project in the package.json file</p>
+            <pre class="line-numbers"><code class="language-json" data-prismjs-copy="Copy to clipboard">"scripts": {
+    "start": "node &lt;FILE_TO_RUN&gt;"
+}
+</code></pre>
+
+            <p>Inside your express project change <code>app.listen()</code> to the following:</p>
+            <pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.listen(process.env.PORT || 8080, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
+</code></pre>
+
+            <p>This will make sure that when deployed to heroku the port will be set by heroku themselves</p>
+            <p>Now make sure that the updated project is pushed to your git repos.</p>
+
+            <p>The next step is to create the heroku app and push the git repos to it. <br>
+                <code>heroku create</code> <br>
+                <code>git push heroku main</code>
+            </p>
+            <p>The project should now get pushed to the app.</p>
+
+            <p>In case the project is a subfolder to a git repository use the following command to push instead <br>
+                <code>git subtree push --prefix &lt;PATH_TO_SUBFOLDER_PROJECT&gt; heroku master </code>
+            </p>
+
+
+    </section>
+    <hr>
+</section>
+</div>
