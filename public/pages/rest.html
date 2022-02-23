@@ -1,0 +1,143 @@
+<section class="content">
+    <div class="content-headline">
+        <span class="fs-5 content-sm-heading">REST API</span>
+        <a class="text-dark text-decoration-none fs-5 float-end"
+            href="https://github.com/jonasegehrke/Node_Mandatory_1"><i class="uil uil-github"></i>Link to
+            Github</a>
+    </div>
+    <hr>
+    <section class="content-1">
+        <h3 class="content-main-heading">REST API using express</h1>
+            <h4>Description</h4>
+            <p>This page includes a bit of theory about REST API and a full guide on creating a full crudable REST API with <a href="/tools#express">express</a> </p>
+            <p>A REST API is a way to send data back and forth from a server to a client. Its mostly used to handle data from a database</p>
+            <p>There are a few conventions that we use when dealing with REST API</p>
+            <h6>REST URL's</h5>
+            <p>Naming your rest endpoints should follow a few conventions.</p>
+            <ul>
+                <li>All request types should share the same collection resource name</li>
+                <li>Use nouns to represent resources</li>
+                <li>Do not use trailing forward slash (/) in URI's</li>
+                <li>Use hyphens (-) to improve readablity of URI's</li>
+                <li>Do not use underscores (_)</li>
+                <li>Use lowercase letters</li>
+                <li>Necer use CRUD function names in URI's</li>
+            </ul>
+            <h6>Order of requests</h5>
+            <p>The order of how you represent the request types in your code has a standard convention</p>
+            <ul>
+                <li>GET (all)</li>
+                <li>GET (specific)</li>
+                <li>POST</li>
+                <li>PUT</li>
+                <li>PATCH</li>
+                <li>DELETE</li>
+            </ul>
+
+            <h6>Example</h6>
+            An example for a REST API would look like this
+            <table class="table" id="rest-api-example">
+                <thead>
+                    <tr>
+                        <th scope="col">HTTP Method</th>
+                        <th scope="col">Endpoint</th>
+                        <th scope="col">What it does?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GET</td>
+                        <td>/movies</td>
+                        <td>Fetches all resources</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td>/movies/{id}</td>
+                        <td>Fetches a specific resource</td>
+                    </tr>
+                    <tr>
+                        <td>POST</td>
+                        <td>/movies</td>
+                        <td>Creates a new resource</td>
+                    </tr>
+                    <tr>
+                        <td>PUT</td>
+                        <td>/movies/{id}</td>
+                        <td>Updates a specific resource</td>
+                    </tr>
+                    <tr>
+                        <td>PATCH</td>
+                        <td>/movies/{id}</td>
+                        <td>Partially updates a specific resource</td>
+                    </tr>
+                    <tr>
+                        <td>DELETE</td>
+                        <td>/movies/{id}</td>
+                        <td>Deletes a specific resource</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>REST API with Express</h4>
+            <p>Below will be examples rest endpoints created with express and no database <br>
+            This example will be using an array to store the data:</p>
+
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">const movies = [
+    {id: 1, title: "Avengers: Infinity War"},
+    {id: 2, title: "The Incredible Hulk"}
+]
+</code></pre>
+
+            <p>First lets understand the basics of how a rest endpoint works in express</p>
+            <p>A request consists of the endpoint and a callback function <br>
+            The callback function consists a request and a respond that you can use to do the functionalities</p>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">// (endpoint, callback function)
+app.get("/movies", (req, res) => {
+    //Do something
+});
+</code></pre>
+            <h6>Fetch all resources (GET)</h6>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.get("/movies", (req, res) => {
+    res.send({ data: movies });
+});
+</code></pre>
+            <h6>Fetch a specific resource (GET)</h6>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.get("/movies/:id", (req, res) => {
+    const foundMovie = movies.find(movie => movie.id === Number(req.params.id));
+    foundMovie ? res.send({data: foundMovie}) : res.sendStatus(404).send({})
+});
+</code></pre>
+            <h6>Create a new resource (POST)</h6>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.post("/movies", (req, res) => {
+    const movieToCreate = req.body;
+    movieToCreate.id = movies[movies.length-1].id + 1;
+    movies.push(movieToCreate);
+    res.send({})
+})
+</code></pre>
+            <h6>Update a specific resouce (PUT)</h6>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.put("/movies/:id", (req, res) => {
+    const foundMovie = movies.find(movie => movie.id === Number(req.params.id));
+    foundMovie ? movies[foundMovie.id-1] = req.body : res.sendStatus(404).send({});
+    res.send({})
+})
+</code></pre>
+            <h6>Partially update a specific resource (PATCH)</h6>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.patch("/movies/:id", (req, res) =>{
+    const foundMovie = movies.find(movie => movie.id === Number(req.params.id));
+    foundMovie ? movies[foundMovie.id-1] = { ...foundMovie, ...req.body, id:foundMovie.id } : res.sendStatus(404).send({});
+    res.send({})
+})
+</code></pre>
+            <h6>Delete a specific resource (DELETE)</h6>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.delete("/movies/:id", (req, res) => {
+    const foundMovieIndex = movies.findIndex(movie => movie.id === Number(req.params.id));
+    foundMovieIndex !== -1 ? movies.splice(foundMovieIndex, 1) : res.sendStatus(404).send({})
+    res.send({})
+})
+</code></pre>
+
+    </section>
+    <hr>
+</section>
+</div>

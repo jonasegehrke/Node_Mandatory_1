@@ -11,7 +11,7 @@
             <h4>Description</h4>
             <p>In this elective we've used a few tools that have come in handy for backend web-development</p>
 
-            <h4>Express</h4>
+            <h4 id="express">Express</h4>
             <p>Express is a Node.js web application framework that provides a set of features for web
                 applications. <br>
                 It is fast, robust and asynchronous. Because of this, it is the leading backend framework for
@@ -44,7 +44,21 @@ app.listen(8080, () =>{
     console.log("Server is running on port ", 8080);
 });
 </code></pre>
-
+            <h4>nodemon</h4>
+            <p>nodemon is a great development tool. It watches all files in the project and provides an automatic restart when a file change is made.</p>
+            <p>The install guide can found in <a href="/terminal-commands#nodemon">terminal commands</a></p>
+            <p>You can create a config file for nodemon called <code>nodemon.json</code>. <br>
+                A configuration that can come in handy when creating a SSR website would be the ability to specify an extension watch list: </p>
+<pre class="line-numbers"><code class="language-json" data-prismjs-copy="Copy to clipboard">{
+    "ext": "js, json, html"
+}
+</code></pre>
+            <p>Now nodemon will restart on any changes to files in the directory (or subdirectories) with the extensions <code>.js, .json, .html</code></p>
+            <h4>Heroku</h4>
+            <p>Heroku is a cloud platform that lets you build, deliver, monitor and scale apps.<br>
+            You can easily host your express project for free with thier service </p>
+            <p> A full guide to setting up your first Heroku app is specified on the <a href="/terminal-commands#heroku">terminal-commands</a> page</p>
+            
     </section>
     <hr>
 </section>
