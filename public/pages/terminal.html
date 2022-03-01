@@ -16,7 +16,7 @@
             </p>
 
             <h4>Node</h4>
-            <p>Node contains a few commands itself which are useful for your workstation aswell as launching a
+            <p>Node is a runtime environment that contains a few commands itself which are useful for your workstation aswell as launching a
                 program.</p>
 
             <p>The command below will tell you which version of node you currently have installed. <br>
@@ -68,8 +68,9 @@
 }
 </code></pre>
 
-            <p>Inside your express project change <code>app.listen()</code> to the following:</p>
-            <pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.listen(process.env.PORT || 8080, function(){
+            <p>If you have defined app.listen to listen to <code>process.env.PORT</code> then you can skip the next code snippet. <br>
+                 Inside your express project change <code>app.listen()</code> to the following:</p>
+            <pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.listen(process.env.PORT || 3000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 </code></pre>
