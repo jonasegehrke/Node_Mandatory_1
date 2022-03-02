@@ -9,9 +9,73 @@
     <section class="content-1">
         <h3 class="content-main-heading">SSR with express</h1>
             <h4>Description</h4>
-            <p>This page will contain the knowledge needed to create a full server side rendered web-page using express
+            <p>This page will contain the knowledge needed to create a full server side rendered web-page using express. <br>
+                A SSR website is commonly used as a reason to get good rankings on search engines such as google. <br>
+                A part of SEO is a spider website crawler, that takes a quick look at websites to get keywords and other information. <br>
+                The catch is that the crawler only takes a quick snapshot of the webpage and then leaves. So if your website is too slow (Client side rendered) it might get a blank page before it leaves.
+                Server side rendering counters this by rendering all html pages on the server once it starts.
             </p>
 
+            <h4>Public folder</h4>
+            <p>The public folder is where you can store all your webpages, styling, scripts and assets and make them available to the client. <br>
+            In order to use this we need to not only create the public folder int he root directory, but also a simple line of code:</p>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.use(express.static('public'));
+</code></pre>
+
+            <h4>Example of SSR</h4>
+            <p>An example of a SSR webpage would look like the following code:</p>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">const express = require("express");
+const fs = require("fs");
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+const nav = fs.readFileSync("./public/components/nav.html").toString();
+const scripts = fs.readFileSync("./public/components/scripts.html").toString();
+const frontPage = fs.readFileSync("./public/pages/index.html").toString();
+const terminalPage = fs.readFileSync("./public/pages/terminal.html").toString();
+const toolPage = fs.readFileSync("./public/pages/tools.html").toString();
+const restPage = fs.readFileSync("./public/pages/rest.html").toString();
+const ssrPage = fs.readFileSync("./public/pages/ssr.html").toString();
+const basicsPage = fs.readFileSync("./public/pages/basics.html").toString();
+
+const frontPagePage = nav.replace('%%HOME%%', 'active') + frontPage + scripts;
+const terminalPagePage = nav.replace('%%TERMINAL%%', 'active') + terminalPage + scripts;
+const toolPagePage = nav.replace('%%TOOLS%%', 'active') + toolPage + scripts;
+const restPagePage = nav.replace('%%REST%%', 'active') + restPage + scripts;
+const ssrPagePage = nav.replace('%%SSR%%', 'active') + ssrPage + scripts;
+const basicsPagePage = nav.replace('%%BASICS%%', 'active') + basicsPage + scripts;
+
+app.use(express.static('public'));
+
+app.get("/", (req, res) =>{
+    res.send(frontPagePage);
+})
+
+app.get("/javascript-basics", (req, res) =>{
+    res.send(basicsPagePage);
+})
+
+app.get("/terminal-commands", (req, res) =>{
+    res.send(terminalPagePage);
+})
+
+app.get("/tools", (req, res) =>{
+    res.send(toolPagePage);
+})
+
+app.get("/rest", (req, res) =>{
+    res.send(restPagePage);
+})
+
+app.get("/ssr", (req, res) =>{
+    res.send(ssrPagePage)
+})
+
+app.listen(PORT, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
+</code></pre>
+    <p>We use fs to read the HTML files in serverside once the server starts. After this we set up the full page by concatenating the <code>nav.html</code> with the <code>page.html</code> and the <code>scripts.html</code></p>
           
     </section>
     <hr>

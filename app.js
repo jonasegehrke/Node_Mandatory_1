@@ -4,45 +4,47 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const nav = fs.readFileSync("./public/components/nav.html").toString();
-const scripts = fs.readFileSync("./public/components/scripts.html").toString();
-const frontPage = fs.readFileSync("./public/pages/index.html").toString();
-const terminalPage = fs.readFileSync("./public/pages/terminal.html").toString();
-const toolPage = fs.readFileSync("./public/pages/tools.html").toString();
-const restPage = fs.readFileSync("./public/pages/rest.html").toString();
-const ssrPage = fs.readFileSync("./public/pages/ssr.html").toString();
-const basicsPage = fs.readFileSync("./public/pages/basics.html").toString();
+const footer = fs.readFileSync("./public/components/footer.html").toString();
+const home = fs.readFileSync("./public/pages/index.html").toString();
+const javascriptBasics = fs.readFileSync("./public/pages/basics.html").toString();
+const terminalCommands = fs.readFileSync("./public/pages/terminal.html").toString();
+const tools = fs.readFileSync("./public/pages/tools.html").toString();
+const restAPI = fs.readFileSync("./public/pages/rest.html").toString();
+const ssr = fs.readFileSync("./public/pages/ssr.html").toString();
 
-const frontPagePage = nav.replace('%%HOME%%', 'active') + frontPage + scripts;
-const terminalPagePage = nav.replace('%%TERMINAL%%', 'active') + terminalPage + scripts;
-const toolPagePage = nav.replace('%%TOOLS%%', 'active') + toolPage + scripts;
-const restPagePage = nav.replace('%%REST%%', 'active') + restPage + scripts;
-const ssrPagePage = nav.replace('%%SSR%%', 'active') + ssrPage + scripts;
-const basicsPagePage = nav.replace('%%BASICS%%', 'active') + basicsPage + scripts;
+
+const homePage = nav.replace('%%HOME%%', 'active') + home + footer;
+const javascriptBasicsPage = nav.replace('%%BASICS%%', 'active') + javascriptBasics + footer;
+const terminalCommandsPage = nav.replace('%%TERMINAL%%', 'active') + terminalCommands + footer;
+const toolsPage = nav.replace('%%TOOLS%%', 'active') + tools + footer;
+const restAPIPage = nav.replace('%%REST%%', 'active') + restAPI + footer;
+const ssrPage = nav.replace('%%SSR%%', 'active') + ssr + footer;
+
 
 app.use(express.static('public'));
 
 app.get("/", (req, res) =>{
-    res.send(frontPagePage);
+    res.send(homePage);
 })
 
 app.get("/javascript-basics", (req, res) =>{
-    res.send(basicsPagePage);
+    res.send(javascriptBasicsPage);
 })
 
 app.get("/terminal-commands", (req, res) =>{
-    res.send(terminalPagePage);
+    res.send(terminalCommandsPage);
 })
 
 app.get("/tools", (req, res) =>{
-    res.send(toolPagePage);
+    res.send(toolsPage);
 })
 
 app.get("/rest", (req, res) =>{
-    res.send(restPagePage);
+    res.send(restAPIPage);
 })
 
 app.get("/ssr", (req, res) =>{
-    res.send(ssrPagePage)
+    res.send(ssrPage)
 })
 
 app.listen(PORT, function(){

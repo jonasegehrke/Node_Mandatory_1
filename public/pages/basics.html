@@ -13,9 +13,64 @@
             </p>
 
             <h4>Data Types</h4>
-            <h4>Variables</h4>
-            
-          
+            <p>Javascript types are dynamic. This means that the same variable can be used to store different data types:</p>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">let x; // x is undefined
+x = 5; // x is Number
+x = "Jonas"; // x is String
+x = true; // x is Boolean
+const animals = ["Cat", "Tiger", "Dog"]; // animals is Array
+const cat = {breed: "American Bobtail Cat", coat: "Medium", lifespan: "13-15 years"}; // cat is Object
+</code></pre>
+            <h4>Hoisting</h4>
+            <p>Hoisting is JavaScript's default behavior of moving all declarations to the top of the current scope (to the top of the current script or the current function).</p>
+            <h4>Loops</h4>
+            <p>Loops in javascript can be done with <code>for & while</code> but this is commonly slow as you have to itterate through each element of the collection. <br>
+            That means that if you dont need the index of each element you can simply use <code>map</code> or other functions. <br>
+            Below will be examples of a few ways to find a element in a collection using loops/map</p>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">const carBatteries = [0.32423, 0.65765, 0.3242, 0.13543]; // declaring an Array
+const chargedCarBatteries = carBatteries.map(x => x+0.4); // Adds 0.4 to each element (battery) using map
+carBatteries.forEach(function(value, index){console.log(`${value} : ${index}`)}); // prints out each battery and index using forEach loop
+const drainedBatteries = carBatteries.filter(x => x < 0.5) // Stores batteries with low battery in a seperate array using filter
+
+const movies = [{id: 1, title: "Avengers: Infinity War"}, {id: 2, title: "The Incredible Hulk"}] // declaring array of objects
+const foundMovie = movies.find(movie => movie.id === 2; // Finds the object where the id === 2 using find function
+const foundMovieIndex = movies.findIndex(movie => movie.id === 2; //Finds the index of the object with id === 2 using findIndex
+</code></pre>
+            <h4>Functions</h4>
+            <p>A Javascript function is a block of code designed to do a particular task. <br>
+            The syntax for a javascript function looks like this:</p>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">function name(parameter1, parameter2, parameter3) {
+    // code to be executed
+}
+</code></pre>
+            <h4>Callback functions</h4>
+            <p>A Callback function is a function set to be excecuted after another function has finsished execution. <br>
+            We need to use callback functions as many javascript actions are asynchronous, which means that they dont stop the program from running anything else until they are completed. <br>
+            An example for using callback functions could look like below. This example is taken from express.</p>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.listen(process.env.PORT || 3000, () =>){ //This sets the port and then calls a callback function
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env); // This  console.log is executed after the server is live
+});
+</code></pre>
+            <h4>Spread Operator</h4>
+            <p>The JavaScript spread operator (...) allows us to quickly copy all or part of an existing array or object into another array or object. <br>
+            An example would be in a HTTP patch request, as we dont nececarely want to edit alle parts of the data. <br>
+            Using the spread operator you can combine two objects without overwriting non-shared keys</p>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">app.patch("/movies/:id", (req, res) =>{
+    const foundMovie = movies.find(movie => movie.id === Number(req.params.id));
+    // Using the spread operator below we can combine the two datasets and only overwrite existing key, value
+    foundMovie ? movies[foundMovie.id-1] = { ...foundMovie, ...req.body, id:foundMovie.id } : res.sendStatus(404).send({});
+    res.send({})
+})
+</code></pre>
+            <h4>Array Methods</h4>
+            <p>Array comes with alot of different methods, below i will show a few:</p>
+<pre class="line-numbers"><code class="language-javascript" data-prismjs-copy="Copy to clipboard">const diet = ["cucumber", "tomato", "Salad"]; // declaring an array
+    diet.push("pizza") // add a new element to array
+    diet.pop(); // removes the last element of array
+    diet.shift(); // removes the first element and "shifts" all other elements to a lower index
+    diet.lenght(); // returns the length of the array
+    diet.splice(2,1,"fish") // (index where to add element(s), how many to remove, new elements to add) It returns the removed elements
+</code></pre>
     </section>
     <hr>
 </section>
