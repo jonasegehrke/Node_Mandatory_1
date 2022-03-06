@@ -45,8 +45,8 @@ app.listen(8080, () =>{
 });
 </code></pre>
             <h4>package.json</h4>
-            <p>This JSON file lives in the root of your project. It contains important information about the project such as dependencies, project name & scripts <br>
-            In here we can declare what dependencies are used in the project. Adding a dependeci followed by the command <code>npm i</code> will install the dependencies into the node_modules folder.  <br>
+            <p>This JSON file lives in the root of your project. It contains important metadata about the project such as project name, description, version & license <br>
+            It is also what we call a build tool where we can run scripts to start the project. In the file we can declare what dependencies are used in the project. Adding a dependeci followed by the command <code>npm i</code> will install the dependencies into the node_modules folder.  <br>
             With the command <code>npm init</code> you can create a boilerplate of the package.json file with all the information needed to publish with <code>npm publish</code></p>
             <h4>fs</h4>
             <p>fs is used to read and write to files. During the elective we have used this to create <a href="/ssr">SSR</a>. We read the html files in our app.js so that it is serverside. <br>
